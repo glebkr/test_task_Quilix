@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.Test_task_Quilix.retrofit.Currency
 import kotlinx.android.synthetic.main.currency_item.view.*
 
-class RateListAdapter() : RecyclerView.Adapter<RateListAdapter.RateListViewHolder>() {
+class RateListAdapter(val rateList: MutableList<Currency>) : RecyclerView.Adapter<RateListAdapter.RateListViewHolder>() {
     class RateListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
@@ -16,13 +17,14 @@ class RateListAdapter() : RecyclerView.Adapter<RateListAdapter.RateListViewHolde
     }
 
     override fun onBindViewHolder(holder: RateListViewHolder, position: Int) {
-        holder.itemView.currency.text = "USD"
-        holder.itemView.description.text = "1 доллар США"
-        holder.itemView.rate1.text = "1,9264"
+        val curRate = rateList[position]
+        holder.itemView.currency.text = curRate.charCode
+        holder.itemView.description.text = "curRate.name"
+        holder.itemView.rate1.text = "curRate.rate"
         holder.itemView.rate2.text = "1,9231"
     }
 
     override fun getItemCount(): Int {
-        return 20
+        return 5
     }
 }
