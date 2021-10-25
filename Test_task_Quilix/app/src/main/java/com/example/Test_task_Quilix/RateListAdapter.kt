@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.Test_task_Quilix.retrofit.Currency
 import kotlinx.android.synthetic.main.currency_item.view.*
 
-class RateListAdapter(val rateList: MutableList<Currency>) : RecyclerView.Adapter<RateListAdapter.RateListViewHolder>() {
+class RateListAdapter(val rateTodList: MutableList<Currency>, val rateTomList: MutableList<Currency>) : RecyclerView.Adapter<RateListAdapter.RateListViewHolder>() {
     class RateListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
@@ -17,14 +17,15 @@ class RateListAdapter(val rateList: MutableList<Currency>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: RateListViewHolder, position: Int) {
-        val curRate = rateList[position]
-        holder.itemView.currency.text = curRate.charCode
-        holder.itemView.description.text = "curRate.name"
-        holder.itemView.rate1.text = "curRate.rate"
-        holder.itemView.rate2.text = "1,9231"
+        val curTodRate = rateTodList[position]
+        val curTomRate = rateTomList[position]
+        holder.itemView.currency.text = curTodRate.Cur_Abbreviation
+        holder.itemView.description.text = curTodRate.Cur_Scale + " " +  curTodRate.Cur_Name
+        holder.itemView.rate1.text = curTodRate.Cur_OfficialRate
+        holder.itemView.rate2.text = curTomRate.Cur_OfficialRate
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return rateTodList.size
     }
 }
